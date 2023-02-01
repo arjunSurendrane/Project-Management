@@ -15,7 +15,7 @@ mutation{
 }
 ```
 
-## Update Client
+Update Client
 
 ```python
 mutation{
