@@ -2,7 +2,7 @@
 
 ## Query
 
-Create Client
+### Create Client
 
 ```bash
 mutation{
@@ -15,7 +15,7 @@ mutation{
 }
 ```
 
-Update Client
+### Update Client
 
 ```python
 mutation{
