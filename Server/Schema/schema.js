@@ -95,6 +95,23 @@ const mutation = new GraphQLObjectType({
         return client.save();
       },
     },
+    // Update Client
+    updateClient: {
+      type: ClientType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Client.findByIdAndUpdate(
+          args.id,
+          { name: args.name, email: args.email, phone: args.phone },
+          { new: true }
+        );
+      },
+    },
     // Delete Client
     deleteClient: {
       type: ClientType,
@@ -134,6 +151,22 @@ const mutation = new GraphQLObjectType({
         return project.save();
       },
     },
+    // Update Project
+    updateProject: {
+      type: ProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Project.findByIdAndUpdate(
+          args.id,
+          { name: args.name, description: args.description },
+          { new: true }
+        );
+      },
+    },
     // Delete Project
     deleteProject: {
       type: ProjectType,
@@ -142,21 +175,6 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Project.findByIdAndRemove(args.id);
-      },
-    },
-    // Update Client Name
-    updateClinetName: {
-      type: ClientType,
-      args: {
-        id: { type: GraphQLNonNull(GraphQLID) },
-        name: { type: GraphQLNonNull(GraphQLString) },
-      },
-      resolve(parent, args) {
-        return Client.findByIdAndUpdate(
-          args.id,
-          { name: args.name },
-          { new: true }
-        );
       },
     },
   },
