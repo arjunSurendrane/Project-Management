@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import Schema from "./Schema/schema.js";
 import { graphqlHTTP } from "express-graphql";
+import cors from "cors";
 import { connectDB } from "./Config/db.js";
 dotenv.config();
 
@@ -9,6 +10,7 @@ dotenv.config();
 connectDB();
 const port = process.env.PORT || 8000;
 const app = express();
+app.use(cors());
 
 // route
 app.use(
